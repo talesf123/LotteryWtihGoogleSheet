@@ -1,0 +1,292 @@
+*, *::before, *::after
+  box-sizing: border-box
+
+.full-block
+  display: flex
+  align-items: center
+  justify-content: center
+  width: 100vw
+  height: 100vh
+  background: #FFF url('../img/bg-food.jpg') no-repeat center right
+  background-size: contain
+
+@media screen and (max-width: 768px)
+  .full-block
+    align-items: flex-start
+    background-position-x: center
+    background-size: cover
+
+.main-block
+  margin-right: 25vw
+  width: 40vw
+  text-align: center
+
+@media screen and (max-width: 768px)
+  .main-block
+    margin-right: 0
+    width: calc(100vw - 12px)
+
+.god
+  margin-bottom: 1rem
+  padding: 2rem
+  background: rgba(#FFF, .54)
+  border: 1px solid rgba(41, 44, 55, 0.27)
+  border-radius: .5rem
+  span
+    position: relative
+    display: block
+  h1
+    margin: 0
+    font-size: 4rem
+  span
+    display: block
+    max-height: 73px
+    overflow: hidden
+    color: #333844
+
+@media screen and (max-width: 768px)
+  .god
+    padding: 2rem .5rem
+    h1
+      font-size: 2rem
+    span
+      max-height: 36px
+
+.god .wrap > span
+  animation-iteration-count: infinite
+  animation-timing-function: linear
+
+@for $i from 1 through 50
+  $t: .03s * $i
+  @keyframes spin-#{$i}
+    from
+      top: 0
+    to
+      top: calc(-73px * #{$i})
+  .god .wrap > .span-#{$i}
+    animation-name: spin-#{$i}
+    animation-duration: $t
+    
+.btns
+  display: flex
+  margin-bottom: 3rem
+
+.vegetarian
+  padding-right: 2px
+  color: #689F38
+
+
+.btn-start
+  display: flex
+  align-items: center
+  justify-content: center
+  position: relative
+  z-index: 1
+  margin-top: 5vh
+  margin-bottom: 2vh
+  margin-left: 2rem
+  padding: 1rem 2rem
+  width: 100%
+  border: 1px solid rgba(41, 44, 55, 0.27)
+  text-decoration: none
+  color: rgba(41, 44, 55, 0.54)
+  &::after
+    content: '轉動命運輪盤'
+    line-height: 1
+  &:hover
+    color: #CD0505
+  &.not-allow
+    pointer-events: none
+    &::after
+      font-family: 'FontAwesome'
+      content: '\f110'
+      animation: fa-spin 2s infinite linear
+    &:hover
+      color: #CCC
+
+// 線
+.btn-start, .btn-start.not-allow
+  .line
+    position: absolute
+    background: #CD0505
+    transform: scale(0)
+    transition: transform .1s ease
+    // 水平線
+    &.-h
+      width: 100%
+      height: 2px
+    // 垂直線
+    &.-v
+      width: 2px
+      height: 100%
+    &.top
+      top: -2px
+      left: 0
+      transform-origin: left
+    &.right
+      top: 0
+      right: -2px
+      transform-origin: top
+    &.bottom
+      bottom: -2px
+      right: 0
+      transform-origin: right
+    &.left
+      bottom: 0
+      left: -2px
+      transform-origin: bottom
+
+.btn-start.not-allow
+  border-color: transparent
+  &, &:hover
+    color: #CD0505
+  .line
+    background: transparent
+
+// 線的效果
+.btn-start, .btn-start.not-allow
+  .line
+    &.top
+      transition-delay: .3s
+    &.right
+      transition-delay: .2s
+    &.bottom
+      transition-delay: .1s
+    &.left
+      transition-delay: 0
+.btn-start:hover, .btn-start.not-allow:hover
+  .line
+    transform: scale(1)
+    &.top
+      transition-delay: 0s
+    &.right
+      transition-delay: .1s
+    &.bottom
+      transition-delay: .2s
+    &.left
+      transition-delay: .3s
+
+
+// toggle button
+.toggle
+  position: relative
+  display: inline-block
+  width: 100px
+  height: 54px
+  input
+    display: none
+
+.button
+  position: absolute
+  cursor: pointer
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  background-color: #ccc
+  transition: .4s
+  box-shadow: 0 2px 1px 0 rgba(255, 255, 255, 0.5),inset 0 1px 3px 0 rgba(0, 0, 0, 0.2)
+  &:before
+    position: absolute
+    content: ""
+    height: 46px
+    width: 46px
+    left: 4px
+    bottom: 4px
+    background-color: white
+    transition: .4s
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.2),0px 4px 23px 0 rgba(0, 0, 0, 0.08),-2px 4px 4px 0 rgba(0, 0, 0, 0.1)
+
+input
+  &:checked + .button
+    background-color: #8BC34A
+  &:focus + .button
+    box-shadow: 0 0 1px #2196F3
+  &:checked + .button:before,
+  &:checked + .button:after
+    transform: translateX(46px)
+  &:checked + .button:after
+    color: #689F38
+
+.button.round
+  border-radius: 34px
+  &:before
+    border-radius: 50%
+  &:after
+    font-family: 'FontAwesome'
+    content: '\f18c'
+    position: absolute
+    left: 4px
+    bottom: 4px
+    display: flex
+    align-items: center
+    justify-content: center
+    height: 46px
+    width: 46px
+    font-size: 1.5rem
+    color: #ccc
+    transition: .4s
+
+
+// map
+.map
+  width: 100%
+  iframe
+    width: 100%
+    height: calc((40vw / 16) * 9)
+    transition: all .5s ease
+  .hidden
+    visibility: hidden
+    opacity: 0
+
+@media screen and (max-width: 768px)
+  .map
+    iframe
+      min-height: 30vh
+
+
+// github
+.github
+  position: fixed
+  left: 0
+  bottom: 0
+  display: flex
+  width: 100px
+  height: 100px
+  &::before
+    content: ''
+    width: 0
+    height: 0
+    border-style: solid
+    border-width: 100px 0 0 100px
+    border-color: transparent transparent transparent #6e5494
+  .fa
+    position: absolute
+    left: 10px
+    bottom: 5px
+    font-size: 3rem
+    color: #FFF
+
+@media screen and (max-width: 768px)
+  .github
+    width: 70px
+    height: 70px
+    &::before
+      border-width: 70px 0 0 70px
+    .fa
+      left: 8px
+      bottom: 4px
+      font-size: 2rem
+
+
+
+// seo
+.search-only
+  position: absolute
+  width: 1px
+  height: 1px
+  padding: 0
+  margin: -1px
+  overflow: hidden
+  clip: rect(0, 0, 0, 0)
+  border: 0
