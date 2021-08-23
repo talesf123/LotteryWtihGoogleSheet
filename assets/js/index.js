@@ -5,7 +5,7 @@ google_file_feed_id = 'gbnm1212fdsf5454g5fds4g5fd4sngf'
 */
 const 
   google_file_feed_id = '1cY0YYL67Us5SotGM3L9gIxWkGdRkDc5SuthMNaNGQjg',
-  url = `https://spreadsheets.google.com/feeds/list/${google_file_feed_id}/1/public/values?alt=json`,
+  url = `https://docs.google.com/spreadsheets/d/e/2PACX-1vQw7DcgEATWH8kWIrDwv6FiiUyRV0fR6CakWSxKuHIWbF0Q1OKiFmcAqA9ne82DQ2RDUuSYoY00SXXi/pubhtml?gid=366642098&single=true`,
   duration = 3500; // 拉霸效果執行多久
 var cheer_data, btn = $('.btn-start');
 fetch(url)
