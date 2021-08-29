@@ -8,14 +8,19 @@ var cheer_data, btn = $('.btn-start');
 fetch(url)
   .then(res => res.json())
   .then(data => {
-    var header = data.values[0];
+    var header = data.values[0], keys = {};
     var all_data = data.values.slice(1).map(function(d){
       tmp = {}
       header.forEach(function(h,i){ tmp[h] = d[i] });
+      tmp['電話'] = mask(tmp['電話']);
+      if(keys[`${tmp.姓名} - ${tmp.電話}`] == undefined){
+        keys[`${tmp.姓名} - ${tmp.電話}`] = 1;
+      }else{
+        tmp = undefined;
+      }
       return tmp
-    });
-    cheer_data = all_data.map(d => `${d.姓名} - ${d.電話}`).
-      filter(onlyUnique).map(d => `${d.split(" - ")[0]} - ${mask(d.split(" - ")[1])}`);
+    }).filter(d => d);
+    cheer_data = all_data.map(d => `${d.姓名} - ${d.電話}`);
     $('body').append(`<style>${spin_style(cheer_data.length)}</style>`);
     var randChk = Array.from(Array(cheer_data.length).keys());
     // 按鈕
