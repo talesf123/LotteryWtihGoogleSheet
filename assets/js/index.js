@@ -1,4 +1,3 @@
-
 const
   worksheet_id = '1cY0YYL67Us5SotGM3L9gIxWkGdRkDc5SuthMNaNGQjg',
   tab_name = '加油團清單',
@@ -14,8 +13,7 @@ fetch(url)
       tmp = {}
       header.forEach(function(h,i){ tmp[h] = d[i] });
       return tmp
-    })
-
+    });
     cheer_data = all_data.map(d => `${d.姓名} - ${d.電話}`).
       filter(onlyUnique).map(d => `${d.split(" - ")[0]} - ${mask(d.split(" - ")[1])}`);
     $('body').append(`<style>${spin_style(cheer_data.length)}</style>`);
@@ -27,6 +25,10 @@ fetch(url)
       $(this).addClass('not-allow');
       const chooseOne = toggle => {
         console.log("Sample count:" + randChk.length)
+        if(randChk.length == 0){
+          alert('籤筒無籤')
+          return false;
+        }
         // 清空、插入選項
         let input = document.querySelector('.wrap');
         input.innerHTML = '';
