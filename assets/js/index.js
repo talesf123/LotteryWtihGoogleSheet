@@ -1,8 +1,8 @@
 
 const
-  worksheet_id = '15PPK8YU4TF1R9DmZ-86Rqzpv38CWzsgykdNXBF3FEiU',
-  tab_name = '8888',
-  key = 'AIzaSyBNhC6OI2QeHm2r3vdvlhiWx0ltzhuWKBk',
+  worksheet_id = '1cY0YYL67Us5SotGM3L9gIxWkGdRkDc5SuthMNaNGQjg',
+  tab_name = '加油團清單',
+  key = 'AIzaSyDFCqJwH8rUfPWJ5qQDxDxumUl9H_8Grgw',
   url = 'https://sheets.googleapis.com/v4/spreadsheets/'+worksheet_id+'/values/'+tab_name+'?alt=json&key='+key,
   duration = 3500; // 拉霸效果執行多久
 var cheer_data, btn = $('.btn-start');

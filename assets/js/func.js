@@ -6,7 +6,7 @@ onlyUnique = (value, index, self) => {
   return self.indexOf(value) === index;
 }
 mask = (str) => {
-  return `${str.slice(0, 4)}xxx${str.slice(7)}`;
+  return `${str.slice(0, 4)}xxx${str.slice(-3)}`;
 }
 // 取亂數 fn
 r = (max) => {
