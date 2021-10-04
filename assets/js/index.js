@@ -13,7 +13,7 @@ fetch(url)
       tmp = {}
       header.forEach(function(h,i){ tmp[h] = d[i] });
       //未滿18歲不能算加油團
-      if( tmp[h]) return undefined;
+      if(tmp['是否已滿18歲?'] != '是') return undefined;
       tmp['電話'] = mask(tmp['電話']);
       if(keys[`${tmp.姓名} - ${tmp.電話}`] == undefined){
         keys[`${tmp.姓名} - ${tmp.電話}`] = 1;
