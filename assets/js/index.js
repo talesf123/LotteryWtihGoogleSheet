@@ -12,6 +12,8 @@ fetch(url)
     var all_data = data.values.slice(1).map(function(d){
       tmp = {}
       header.forEach(function(h,i){ tmp[h] = d[i] });
+      //未滿18歲不能算加油團
+      if( tmp[h]) return undefined;
       tmp['電話'] = mask(tmp['電話']);
       if(keys[`${tmp.姓名} - ${tmp.電話}`] == undefined){
         keys[`${tmp.姓名} - ${tmp.電話}`] = 1;
